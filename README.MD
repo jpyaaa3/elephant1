@@ -52,6 +52,8 @@ docker compose -f docker-compose.yml -f docker-compose.cam.yml up -d
 * `run_all.sh`
   → 전체 프로세스 실행
 
+아마 얘도 작동 안 할 수도 있는데... 빠르게 고치겠습니다
+
 ---
 
 ## 🚧 wip
