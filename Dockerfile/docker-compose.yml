@@ -1,0 +1,26 @@
+services:
+  dev-humble:
+    build:
+      context: .
+      args:
+        USERNAME: ${USERNAME:-dev}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: dev-humble
+    stdin_open: true
+    tty: true
+    gpus: all
+    shm_size: "2gb"
+    environment:
+      DISPLAY: ${DISPLAY}
+      WAYLAND_DISPLAY: ${WAYLAND_DISPLAY}
+      XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR}
+      PULSE_SERVER: ${PULSE_SERVER}
+      PYOPENGL_PLATFORM: glx
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /mnt/wslg:/mnt/wslg:rw
+      - /home/user/dev/ws/humble_ws:/home/${USERNAME:-dev}/ws
+    working_dir: /home/${USERNAME:-dev}/ws

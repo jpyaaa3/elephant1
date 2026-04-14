@@ -1,0 +1,8 @@
+services:
+  dev-humble:
+    privileged: true
+    volumes:
+      - /dev:/dev
+    group_add:
+      - "${VIDEO_GID:-44}"
+      - "${RENDER_GID:-109}"

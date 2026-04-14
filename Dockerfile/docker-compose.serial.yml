@@ -1,0 +1,8 @@
+services:
+  dev-humble:
+    devices:
+      - ${SERIAL_DEVICE:-/dev/ttyUSB0}:${SERIAL_DEVICE:-/dev/ttyUSB0}
+    device_cgroup_rules:
+      - "c 188:* rmw"
+    group_add:
+      - "${DIALOUT_GID:-20}"
