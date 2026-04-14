@@ -1,0 +1,130 @@
+IK / control structure notes
+
+1. Core IK intent
+- The intended priority is:
+  1) reach the target position
+  2) among reachable terminal states, prefer the one whose tip aligns best with a preferred direction vector
+  3) how to move from current q to that terminal q is a separate planning problem
+- This means path/motion cost should not be mixed into the terminal-state IK objective.
+
+2. Important distinction
+- "Find q_goal" and "Plan q_start -> q_goal" are different problems.
+- Goal-state search:
+  - input: target position, optional preferred direction, tolerances
+  - output: terminal q that satisfies the task
+- Path planning:
+  - input: q_start, q_goal, constraints/costs
+  - output: trajectory / waypoints / motion cost
+
+3. Why the legacy IK kept failing even when a good solution existed
+- The good solution does exist.
+- Manual pre-shaping proved that there are states with both:
+  - very small position error
+  - very good direction alignment
+- Failure happened because the solver was not reaching the right basin automatically.
+- In other words:
+  - not infeasible
+  - search policy problem
+
+4. Legacy IK lessons
+- Useful things to keep conceptually:
+  - multiseed / multi-start search idea
+  - hard terminal tolerance logic
+  - forward kinematics / direction evaluation / clamp logic
+  - local polish as a secondary tool
+- Things to avoid carrying over:
+  - single-first then fallback lifecycle
+  - mixing movement/path cost into IK objective
+  - treating current posture as central to terminal-state search
+
+5. Direction preference
+- Preferred direction should be generalized as a vector, not hardcoded +X.
+- Alignment should be computed by:
+  dot(tip_forward, preferred_dir_world_unit)
+- Direction tolerance should be treated as a hard acceptance rule for final terminal-state validity, not just a weak preference.
+
+6. Multiseed conclusion
+- If the objective is to find q_goal globally, multiseed is still useful.
+- But it should be:
+  - primary global multi-start search from the beginning
+  - not a fallback that only activates after a "main" local IK fails
+
+7. biRRT exploration
+- A separate birrt_ik.py was explored.
+- Intended idea:
+  - start side swings seg1
+  - goal side swings reverse seg2
+  - they connect only if docking frames match
+- "Grain matches" means:
+  - same docking position
+  - same tangent direction
+  - same docking reference vector / twist
+- This matched the conceptual problem well.
+- However, the implementation was too slow for direct use in sim.
+- The slowdown was not because of Genesis physics.
+- It was due to the Python-side planner structure and brute-force refinement.
+- Result:
+  - keep birrt_ik.py as an experiment
+  - do not use it as the active runtime solver for now
+
+8. Control / runtime structure conclusions
+- simulation_mode was removed as a concept.
+- The meaningful runtime split is:
+  - fixed
+  - commanded
+  - simulated
+- commanded:
+  - ideal kinematic direct motion
+  - rate limiting is meaningful
+- simulated:
+  - state should come from a model path
+  - not from Genesis trying to invent useful actuator dynamics for this continuum chain
+- A model interface/path was introduced:
+  - ChainStateModel
+  - DirectHardwareModel placeholder
+
+9. ik_new design
+- A new experimental solver path was created in engine/ik_new.py.
+- It should be independent rather than importing ik_solver.py as a crutch.
+- Current intended structure:
+  - external interface
+  - q finding
+  - path planning
+
+10. q finding structure in ik_new
+- q finding should use multiseed from the start.
+- No single-first / fallback split.
+- Each seed runs a local terminal-state solve.
+- Candidate ranking should compare terminal-state quality only.
+- Path cost must not appear here.
+
+11. Reach then hover-align idea
+- A more suitable structure for direction handling is:
+  1) pure position reach
+  2) after reaching position, run a "hover/align" phase that keeps position approximately fixed and improves orientation
+- This is similar to:
+  - drone reaches target point first
+  - then aligns attitude while hovering
+- This structure is now reflected in ik_new:
+  - SeedLocalSolver: position reach
+  - HoverAlignSolver: post-reach alignment
+
+12. Current active status
+- sim.py is currently wired to ik_new, not birrt_ik.
+- birrt_ik remains as a separate experiment file.
+- The open question is whether the current reach -> hover/align approach in ik_new is strong enough to consistently find the known good terminal states automatically.
+
+13. Remaining problem to solve
+- If a good aligned terminal state exists, the system must find it without manual pre-shaping.
+- Therefore the remaining bottleneck is:
+  - goal-state search quality
+  - not path-planning separation
+  - not Genesis dynamics
+
+14. Practical next-step direction
+- Improve q-finding quality in ik_new.
+- In particular:
+  - better seed generation
+  - stronger post-reach alignment
+  - possibly better basin exploration for direction-feasible terminal states
+- Keep path planning separate and simple until q-finding is reliable.

@@ -1,0 +1,401 @@
+<?xml version="1.0"?>
+<robot name="Robot">
+  <link name="plate">
+    <inertial>
+      <origin xyz="-0.29 0 -0.0025" rpy="0 0 0" />
+      <mass value="10" />
+      <inertia ixx="0.0750208333" ixy="0" ixz="0" iyy="0.300020833" iyz="0" izz="0.375" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/plate/plate_mesh.obj" />
+      </geometry>
+      <material name="plate_mat">
+        <color rgba="0.62745098 0.62745098 0.62745098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/plate/plate_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="housing">
+    <inertial>
+      <origin xyz="-0.125 0 0.090106019" rpy="0 0 0" />
+      <mass value="3" />
+      <inertia ixx="0.0122324069" ixy="0" ixz="0" iyy="0.0239337826" iyz="0" izz="0.0195486244" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/housing/housing_mesh.obj" />
+      </geometry>
+      <material name="housing_mat">
+        <color rgba="0.0823529412 0.0823529412 0.0823529412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/housing/housing_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="wedge">
+    <inertial>
+      <origin xyz="0.0109546951 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.000113860054" ixy="0" ixz="0" iyy="5.38263296e-05" iyz="0" izz="6.90329423e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/wedge/wedge_mesh.obj" />
+      </geometry>
+      <material name="wedge_mat">
+        <color rgba="0.219607843 0.219607843 0.219607843 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/wedge/wedge_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node0">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node0_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node1">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node1_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node2">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node2_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node3">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node3_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node4">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node4_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node5">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node5_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node6">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node6_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node7">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node7_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node8">
+    <inertial>
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="9.93559147e-05" ixy="0" ixz="0" iyy="4.83345352e-05" iyz="0" izz="7.80452872e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+      <material name="node8_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node/node_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="node9">
+    <inertial>
+      <origin xyz="0.0277214464 0 0" rpy="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.000102746922" ixy="0" ixz="-0" iyy="5.51153233e-05" iyz="0" izz="8.14350676e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node_end/node_end_mesh.obj" />
+      </geometry>
+      <material name="node9_mat">
+        <color rgba="0.439215686 0.439215686 0.439215686 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="../assets/node_end/node_end_mesh.obj" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="j_plate_housing" type="prismatic">
+    <parent link="plate" />
+    <child link="housing" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="60" friction="20" />
+  </joint>
+  <joint name="j_housing_wedge" type="revolute">
+    <parent link="housing" />
+    <child link="wedge" />
+    <origin xyz="0 0 0.128" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_wedge_node0" type="revolute">
+    <parent link="wedge" />
+    <child link="node0" />
+    <origin xyz="0.028 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node0_node1" type="revolute">
+    <parent link="node0" />
+    <child link="node1" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node1_node2" type="revolute">
+    <parent link="node1" />
+    <child link="node2" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node2_node3" type="revolute">
+    <parent link="node2" />
+    <child link="node3" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node3_node4" type="revolute">
+    <parent link="node3" />
+    <child link="node4" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node4_node5" type="revolute">
+    <parent link="node4" />
+    <child link="node5" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node5_node6" type="revolute">
+    <parent link="node5" />
+    <child link="node6" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node6_node7" type="revolute">
+    <parent link="node6" />
+    <child link="node7" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node7_node8" type="revolute">
+    <parent link="node7" />
+    <child link="node8" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <joint name="j_node8_node9" type="revolute">
+    <parent link="node8" />
+    <child link="node9" />
+    <origin xyz="0.05 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="0" upper="0" effort="200" velocity="3" />
+    <dynamics damping="0.12" friction="0.06" />
+  </joint>
+  <mujoco>
+    <contact>
+      <exclude body1="housing" body2="plate" />
+      <exclude body1="housing" body2="wedge" />
+      <exclude body1="node0" body2="node1" />
+      <exclude body1="node0" body2="wedge" />
+      <exclude body1="node1" body2="node2" />
+      <exclude body1="node2" body2="node3" />
+      <exclude body1="node3" body2="node4" />
+      <exclude body1="node4" body2="node5" />
+      <exclude body1="node5" body2="node6" />
+      <exclude body1="node6" body2="node7" />
+      <exclude body1="node7" body2="node8" />
+      <exclude body1="node8" body2="node9" />
+    </contact>
+  </mujoco>
+</robot>

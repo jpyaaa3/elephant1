@@ -1,0 +1,25 @@
+# Core numerics
+numpy
+scipy
+
+# Vision / camera
+opencv-contrib-python
+pyrealsense2
+open3d
+matplotlib
+
+# UI / messaging
+pyzmq
+glfw
+imgui[glfw]
+pyserial
+
+# ML / detection
+torch
+ultralytics
+fastsam
+
+# Simulation / viewer
+# Genesis packaging varies by environment. Install the package that provides `import genesis`
+# in your target environment if this line does not work as-is.
+genesis-world

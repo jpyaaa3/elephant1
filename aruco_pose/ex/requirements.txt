@@ -1,0 +1,12 @@
+# Core numerics
+numpy
+
+# Vision / camera
+opencv-contrib-python
+pyrealsense2
+
+# UI / messaging
+pyzmq
+glfw
+imgui[glfw]
+pyserial

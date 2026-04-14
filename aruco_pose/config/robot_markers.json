@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "robot": {
+    "units": "m",
+    "notes": [
+      "Tracker runtime layout.",
+      "pose_link_marker maps each link frame to the corresponding marker frame.",
+      "Marker frame convention: +Z points outward from the mounting face."
+    ]
+  },
+  "aruco": {
+    "dictionary": "DICT_4X4_50",
+    "marker_size_m": 0.017
+  },
+  "markers": [
+    {
+      "marker_id": 0,
+      "link_name": "housing",
+      "face_name": "+y face, 12mm left and 12mm up from lower-right corner (viewed from +y side)",
+      "marker_size_m": 0.017,
+      "dictionary": "DICT_4X4_50",
+      "pose_link_marker": {
+        "p": [
+          -0.238,
+          0.065,
+          0.012
+        ],
+        "q": [
+          -0.7071067811865475,
+          0.0,
+          0.0,
+          0.7071067811865476
+        ]
+      },
+      "outward_normal_link": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "marker_x_axis_link": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "marker_id": 1,
+      "link_name": "node9",
+      "face_name": "+z face center",
+      "marker_size_m": 0.017,
+      "dictionary": "DICT_4X4_50",
+      "pose_link_marker": {
+        "p": [
+          0.0306860945,
+          0.0,
+          0.035
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "outward_normal_link": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "marker_x_axis_link": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "marker_id": 2,
+      "link_name": "node9",
+      "face_name": "+y face center",
+      "marker_size_m": 0.017,
+      "dictionary": "DICT_4X4_50",
+      "pose_link_marker": {
+        "p": [
+          0.02772144632775326,
+          0.044,
+          0.0
+        ],
+        "q": [
+          -0.7071067811865475,
+          0.0,
+          0.0,
+          0.7071067811865476
+        ]
+      },
+      "outward_normal_link": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "marker_x_axis_link": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "marker_id": 3,
+      "link_name": "node9",
+      "face_name": "-y face center",
+      "marker_size_m": 0.017,
+      "dictionary": "DICT_4X4_50",
+      "pose_link_marker": {
+        "p": [
+          0.02772144632775326,
+          -0.044,
+          0.0
+        ],
+        "q": [
+          0.7071067811865475,
+          0.0,
+          0.0,
+          0.7071067811865476
+        ]
+      },
+      "outward_normal_link": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "marker_x_axis_link": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "marker_id": 4,
+      "link_name": "node9",
+      "face_name": "-z face center",
+      "marker_size_m": 0.017,
+      "dictionary": "DICT_4X4_50",
+      "pose_link_marker": {
+        "p": [
+          0.0306860945,
+          0.0,
+          -0.035
+        ],
+        "q": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "outward_normal_link": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "marker_x_axis_link": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "tracking_strategy": {
+    "anchor_marker_id": 0,
+    "anchor_link_name": "housing",
+    "node9_marker_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "anchor_usage": "Marker 0 is fixed on housing and defines the world frame together with the housing link frame.",
+    "node9_usage": "At runtime, estimate node9 pose from any visible subset of markers 1-4 and express it in housing/world frame.",
+    "visibility_policy": {
+      "minimum_visible_node9_markers": 1,
+      "single_marker_behavior": "Use the single visible marker pose directly.",
+      "multi_marker_behavior": "Average translation and quaternion after sign alignment.",
+      "zero_marker_behavior": "Cannot observe node9 directly.",
+      "missing_anchor_behavior": "Cannot update camera/world relation if marker 0 is not visible because the camera may move."
+    }
+  }
+}
