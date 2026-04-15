@@ -1,0 +1,13 @@
+numpy
+scipy
+pyzmq
+glfw
+imgui[glfw]
+pyserial
+
+# Simulation
+# Install the package that provides `import genesis` in your environment.
+genesis-world
+
+# Hardware
+dynamixel-sdk

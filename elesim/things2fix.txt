@@ -1,0 +1,52 @@
+1. ctrl.py: ControlPanel reads PanelState fields directly in many places.
+The write path is now mostly method-based, but the read path is still mostly raw field access.
+Next step: add read-side snapshots such as snapshot_q(), snapshot_target(), snapshot_ik_status() and have ControlPanel consume those instead of direct field reads.
+
+2. ctrl.py: ControlService still contains many thin ControlClient pass-through methods.
+Examples: request_ports(), set_device(), disconnect_device(), torque_on(), torque_off().
+This is acceptable for now, but the service layer is still only half-separated from the transport layer.
+Next step: either keep this as the stable service API deliberately, or split host actions and IK actions into smaller services.
+
+3. sim.py: GenesisApp is smaller than before, but still owns some coordination state that could move further outward or downward.
+The current split into JointLayout / MarkerSet / SimScene / HostStateSource is good, but GenesisApp still wires too much directly.
+Next step: keep SimRuntime procedural, but continue moving scene-specific and marker-specific helpers into SimScene and MarkerSet.
+
+4. sim.py: StateSource is now a useful abstraction, but the naming still implies generic future fusion while the current implementation is host-driven only.
+That is fine if IMU/camera fusion is really planned.
+If not, rename toward HostStateSource-only terminology and remove the extra abstraction.
+
+5. host.py: ControlHost still owns too many responsibilities in one class.
+It currently handles ROUTER/PUB sockets, device lifecycle, torque, command dispatch, hardware reads, and state publish.
+Next step: split host loop from hardware session if the file grows any further.
+
+6. host.py: logging is more readable now, but state transitions are still under-logged.
+Useful missing logs: successful device set, disconnect, torque on/off, and hardware read failures that persist.
+Right now some failures are intentionally swallowed, which is safe for runtime but weak for diagnosis.
+
+7. ctrl.py: host state now updates the slider state automatically, which is correct for hardware-follow mode.
+But this means local panel edits and host feedback share the same state object.
+If race conditions or jitter appear later, split desired command state from observed host state explicitly.
+
+8. engine/protocol.py: ControlU and SimQ naming is acceptable, but the wire format still uses short keys for U while the dataclass uses u_linear/u_roll/u_s1/u_s2.
+That is now decoded correctly with unpack_u(), but it remains easy to regress if someone uses ControlU(**msg["u"]) again.
+Next step: either keep unpack-only as policy, or unify wire keys and dataclass names.
+
+9. engine/iklib.py: load_ik_context() now owns manifest parsing plus Genesis geom conversion for chain origin.
+This is structurally better than leaving it in ctrl.py, but it makes iklib responsible for some asset/runtime context assembly too.
+If this grows further, move it into a dedicated ik context builder module rather than bloating iklib itself.
+
+10. requirements.txt was cleaned to current imports, but genesis packaging can differ by environment.
+If deployment becomes repeatable across machines, pin the exact package name/version that provides `import genesis` here.
+
+11. Hardware access still depends on system permissions outside Python.
+The code is fine, but runtime setup still requires serial device access such as membership in the dialout group.
+That requirement should eventually be documented explicitly in README or setup notes.
+
+12. config_loader still has many fallback values inside existing config files.
+Config file absence now hard-fails, which is good.
+But key absence still often falls back silently.
+Next step: decide which runtime keys are truly required and make them fail loudly too.
+
+13. need to add some codes in iklib_src.
+pose_optimizer.py (enables hovering to make tip toward 'preferred vector')
+compensator.py (intentionally offers off-aimed motor pose to compensate the sagging by the gravity)

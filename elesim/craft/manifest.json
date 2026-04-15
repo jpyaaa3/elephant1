@@ -1,0 +1,604 @@
+{
+  "meta": {
+    "node_count": 10,
+    "use_hardware": true,
+    "use_go2": false,
+    "notes": "All poses/joints are root-relative."
+  },
+  "parts": [
+    {
+      "name": "plate",
+      "kind": "plate",
+      "assets": {
+        "mesh": "../assets/plate/plate_mesh.obj",
+        "frame": "../assets/plate/plate_frame.json",
+        "physics": "../assets/plate/plate_physics.json"
+      },
+      "flags": {
+        "control_mode": "fixed",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "housing",
+      "kind": "housing",
+      "assets": {
+        "mesh": "../assets/housing/housing_mesh.obj",
+        "frame": "../assets/housing/housing_frame.json",
+        "physics": "../assets/housing/housing_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "wedge",
+      "kind": "wedge",
+      "assets": {
+        "mesh": "../assets/wedge/wedge_mesh.obj",
+        "frame": "../assets/wedge/wedge_frame.json",
+        "physics": "../assets/wedge/wedge_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.0,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node0",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.028,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node1",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.078,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node2",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.128,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node3",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.178,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node4",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.22799999999999998,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node5",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.27799999999999997,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node6",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.32799999999999996,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node7",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.37799999999999995,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node8",
+      "kind": "node",
+      "assets": {
+        "mesh": "../assets/node/node_mesh.obj",
+        "frame": "../assets/node/node_frame.json",
+        "physics": "../assets/node/node_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.42799999999999994,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "node9",
+      "kind": "node_end",
+      "assets": {
+        "mesh": "../assets/node_end/node_end_mesh.obj",
+        "frame": "../assets/node_end/node_end_frame.json",
+        "physics": "../assets/node_end/node_end_physics.json"
+      },
+      "flags": {
+        "control_mode": "simulated",
+        "collision_enabled": true
+      },
+      "pose_root": {
+        "p": [
+          0.4779999999999999,
+          0.0,
+          0.128
+        ],
+        "q": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  ],
+  "joints": [
+    {
+      "name": "j_plate_housing",
+      "type": "prismatic",
+      "parent": "plate",
+      "child": "housing",
+      "anchor_root": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "axis_root": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_housing_wedge",
+      "type": "revolute",
+      "parent": "housing",
+      "child": "wedge",
+      "anchor_root": [
+        0.0,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_wedge_node0",
+      "type": "revolute",
+      "parent": "wedge",
+      "child": "node0",
+      "anchor_root": [
+        0.028,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node0_node1",
+      "type": "revolute",
+      "parent": "node0",
+      "child": "node1",
+      "anchor_root": [
+        0.078,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node1_node2",
+      "type": "revolute",
+      "parent": "node1",
+      "child": "node2",
+      "anchor_root": [
+        0.128,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node2_node3",
+      "type": "revolute",
+      "parent": "node2",
+      "child": "node3",
+      "anchor_root": [
+        0.178,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node3_node4",
+      "type": "revolute",
+      "parent": "node3",
+      "child": "node4",
+      "anchor_root": [
+        0.22799999999999998,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node4_node5",
+      "type": "revolute",
+      "parent": "node4",
+      "child": "node5",
+      "anchor_root": [
+        0.27799999999999997,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node5_node6",
+      "type": "revolute",
+      "parent": "node5",
+      "child": "node6",
+      "anchor_root": [
+        0.32799999999999996,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node6_node7",
+      "type": "revolute",
+      "parent": "node6",
+      "child": "node7",
+      "anchor_root": [
+        0.37799999999999995,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node7_node8",
+      "type": "revolute",
+      "parent": "node7",
+      "child": "node8",
+      "anchor_root": [
+        0.42799999999999994,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    },
+    {
+      "name": "j_node8_node9",
+      "type": "revolute",
+      "parent": "node8",
+      "child": "node9",
+      "anchor_root": [
+        0.4779999999999999,
+        0.0,
+        0.128
+      ],
+      "axis_root": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "limit_deg": null
+    }
+  ],
+  "no_clip_pairs": [
+    [
+      "housing",
+      "plate"
+    ],
+    [
+      "housing",
+      "wedge"
+    ],
+    [
+      "node0",
+      "node1"
+    ],
+    [
+      "node0",
+      "wedge"
+    ],
+    [
+      "node1",
+      "node2"
+    ],
+    [
+      "node2",
+      "node3"
+    ],
+    [
+      "node3",
+      "node4"
+    ],
+    [
+      "node4",
+      "node5"
+    ],
+    [
+      "node5",
+      "node6"
+    ],
+    [
+      "node6",
+      "node7"
+    ],
+    [
+      "node7",
+      "node8"
+    ],
+    [
+      "node8",
+      "node9"
+    ]
+  ]
+}
