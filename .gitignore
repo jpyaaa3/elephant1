@@ -1,4 +1,5 @@
 build/
+aruco_pose/runtime/sim_build/
 install/
 log/
 __pycache__/

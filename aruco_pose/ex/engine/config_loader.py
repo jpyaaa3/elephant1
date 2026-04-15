@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import configparser
-import os
 import math
+import os
+import sys
+import tempfile
 from dataclasses import dataclass, field
 from typing import Optional, Tuple
 import numpy as np
@@ -13,8 +15,51 @@ import numpy as np
 from engine import protocol as proto
 
 
+# `ex/` (sim, URDF pipeline). Parent is `aruco_pose/`.
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DEFAULT_BUILD_DIR = os.path.join(PROJECT_ROOT, "build")
+ARUCO_POSE_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, ".."))
+
+
+def resolve_sim_build_dir(*, config_dir: str, ini_path: Optional[str] = None) -> str:
+    """Pick a writable directory for URDF/manifest build output.
+
+    Order: env ``ELEPHANT1_SIM_BUILD_DIR``, optional ``ini_path`` (from ``[runtime] build_dir``),
+    then ``aruco_pose/runtime/sim_build``. If the repo tree is not writable (bind-mount uid),
+    fall back to ``$TMPDIR/elephant1_sim_build`` (usually ``/tmp/...``).
+    """
+    env = os.environ.get("ELEPHANT1_SIM_BUILD_DIR", "").strip()
+    if env:
+        p = os.path.abspath(os.path.expanduser(env))
+        os.makedirs(p, exist_ok=True)
+        return p
+
+    if ini_path and str(ini_path).strip():
+        raw = str(ini_path).strip()
+        p = os.path.abspath(raw) if os.path.isabs(raw) else os.path.abspath(os.path.join(config_dir, raw))
+    else:
+        p = os.path.abspath(os.path.join(config_dir, "..", "runtime", "sim_build"))
+
+    try:
+        os.makedirs(p, exist_ok=True)
+        probe = os.path.join(p, ".write_test")
+        with open(probe, "w", encoding="utf-8") as f:
+            f.write("ok")
+        os.remove(probe)
+        return p
+    except OSError:
+        fallback = os.path.join(tempfile.gettempdir(), "elephant1_sim_build")
+        try:
+            os.makedirs(fallback, exist_ok=True)
+        except OSError:
+            raise
+        print(
+            f"[config_loader] sim_build not writable ({p!r}), using {fallback!r}",
+            file=sys.stderr,
+        )
+        return fallback
+
+
+DEFAULT_BUILD_DIR = resolve_sim_build_dir(config_dir=PROJECT_ROOT, ini_path=None)
 
 
 @dataclass(frozen=True)
@@ -249,7 +294,8 @@ def load_app_config_from_ini(path: str) -> AppConfigBundle:
     )
 
     sc0 = defaults.SimConfig
-    build_dir = os.path.abspath(os.path.join(config_dir, "build"))
+    ini_build = cp.get("runtime", "build_dir", fallback="").strip() if cp.has_option("runtime", "build_dir") else None
+    build_dir = resolve_sim_build_dir(config_dir=config_dir, ini_path=ini_build)
     sim_config_cfg = SimConfig(
         use_gpu=cp.getboolean("runtime", "use_gpu", fallback=sc0.use_gpu),
         enable_viewer=cp.getboolean("runtime", "enable_viewer", fallback=sc0.enable_viewer),

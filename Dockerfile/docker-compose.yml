@@ -12,7 +12,10 @@ services:
     gpus: all
     shm_size: "2gb"
     environment:
-      DISPLAY: ${DISPLAY}
+      # 호스트 그래픽 세션과 동일하게 맞춤. 비어 있으면 로컬 워크스테이션 기본 :0
+      DISPLAY: ${DISPLAY:-:0}
+      # X11 MIT-MAGIC-COOKIE (호스트 ~/.Xauthority 를 아래 volumes 로 마운트)
+      XAUTHORITY: /tmp/.docker-xauthority
       WAYLAND_DISPLAY: ${WAYLAND_DISPLAY}
       XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR}
       PULSE_SERVER: ${PULSE_SERVER}
@@ -21,6 +24,8 @@ services:
       NVIDIA_DRIVER_CAPABILITIES: all
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/tmp/.docker-xauthority:ro
       - /mnt/wslg:/mnt/wslg:rw
-      - /home/user/dev/ws/humble_ws:/home/${USERNAME:-dev}/ws
+      # - /home/user/dev/ws/humble_ws:/home/${USERNAME:-dev}/ws
+      - /home/hckang/elephant1:/home/${USERNAME:-dev}/ws
     working_dir: /home/${USERNAME:-dev}/ws
