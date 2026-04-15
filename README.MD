@@ -27,7 +27,7 @@ docker compose up -d
 ### 카메라 및 USB 장치 사용 시 (권장)
 
 ```bash
-docker compose -f docker-compose.yml -f docker-compose.cam.yml up -d
+docker compose -f docker-compose.yml -f docker-compose.serial.yml -f docker-compose.cam.yml up -d
 ```
 
 ✔ 사용 장치:
