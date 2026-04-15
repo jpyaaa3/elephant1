@@ -56,7 +56,7 @@ docker compose -f docker-compose.yml -f docker-compose.serial.yml -f docker-comp
 
 
 
-## 🚧 elesim
+## 🐘 elesim
 
 elesim*elephant simulator) 완성됐습니다
 wip은 이제 obsolete입니다
