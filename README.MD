@@ -58,8 +58,10 @@ docker compose -f docker-compose.yml -f docker-compose.serial.yml -f docker-comp
 
 ## 🚧 wip
 
-개발 진행 중인 영역
-기능 완료 후 추가 push 예정
+elesim 완성됐습니다
+자잘하게 수정할 건 things2fix.txt에 적어놓긴 했는데...
+일단 go2 안 붙인 선에서 가장 개선된 거라고 보시면 될 것 같습니다.
+! aruco_pose와는 별개로 순수 simulator입니다 !
 
 ---
 
