@@ -1,0 +1,39 @@
+name: urop
+
+services:
+  urop:
+    image: urop
+    build:
+      context: .
+      args:
+        USERNAME: ${USERNAME:-dev}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: urop
+    stdin_open: true
+    tty: true
+    privileged: true
+    gpus: all
+    shm_size: "2gb"
+    environment:
+      DISPLAY: ${DISPLAY:-:0}
+      WAYLAND_DISPLAY: wayland-0
+      XDG_RUNTIME_DIR: /mnt/wslg/runtime-dir
+      PULSE_SERVER: unix:/mnt/wslg/PulseServer
+      PYOPENGL_PLATFORM: glx
+      PYTHONNOUSERSITE: "1"
+      PYTHONPATH: /opt/openrobots/lib/python3.10/site-packages:/home/${USERNAME:-dev}/ws/elesim
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /mnt/wslg:/mnt/wslg:rw
+      - /dev:/dev
+      - /home/user/ws:/home/${USERNAME:-dev}/ws
+    working_dir: /home/${USERNAME:-dev}/ws/elesim
+    group_add:
+      - "${DIALOUT_GID:-20}"
+      - "${VIDEO_GID:-44}"
+      - "${RENDER_GID:-109}"
+    device_cgroup_rules:
+      - "c 188:* rmw"

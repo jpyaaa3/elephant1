@@ -1,0 +1,19 @@
+name: uropj
+
+services:
+  uropj:
+    extends:
+      file: docker-compose.yml
+      service: urop
+    image: uropj
+    build:
+      context: .
+      dockerfile: Dockerfile.jaeger
+      args:
+        USERNAME: ${USERNAME:-dev}
+    container_name: uropj
+    restart: unless-stopped
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"

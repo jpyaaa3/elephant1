@@ -1,0 +1,27 @@
+FROM jaegertracing/jaeger:2.19.0 AS jaeger
+
+FROM urop:latest
+
+ARG USERNAME=dev
+
+USER root
+
+COPY requirements-jaeger.txt /tmp/requirements-jaeger.txt
+RUN python3 -m pip install --no-cache-dir -r /tmp/requirements-jaeger.txt && \
+    rm /tmp/requirements-jaeger.txt
+RUN python3 -c "import aiortc, av; print('webrtc imports ok')"
+
+COPY --from=jaeger /cmd/jaeger/jaeger-linux /opt/jaeger/jaeger
+COPY --from=jaeger /cmd/jaeger/sampling-strategies.json /opt/jaeger/sampling-strategies.json
+COPY --chmod=755 uropj-entrypoint.sh /usr/local/bin/uropj-entrypoint
+
+ENV ELESIM_OTEL_ENDPOINT=http://127.0.0.1:4318
+ENV ELESIM_OTEL_PROTOCOL=http/protobuf
+ENV ELESIM_TRACE=1
+
+EXPOSE 4317 4318 16686
+
+USER ${USERNAME}
+
+ENTRYPOINT ["/usr/local/bin/uropj-entrypoint"]
+CMD ["sleep", "infinity"]
